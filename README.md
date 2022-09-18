@@ -2,8 +2,8 @@
 
 Variables should be provided in `.env` file:  
 `DATABASE_URL` - url to database  
-`SHADOW_DATABASE_URL` - url to [shadow database](https://www.prisma.io/docs/concepts/components/prisma-migrate/shadow-database))
-BAG_SECRET - access code for this API
+`SHADOW_DATABASE_URL` - url to [shadow database](https://www.prisma.io/docs/concepts/components/prisma-migrate/shadow-database))  
+`BAG_SECRET` - access code for this API
 
 For example,
 
