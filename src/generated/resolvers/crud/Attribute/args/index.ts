@@ -1,0 +1,12 @@
+export { AggregateAttributeArgs } from "./AggregateAttributeArgs";
+export { CreateManyAttributeArgs } from "./CreateManyAttributeArgs";
+export { CreateOneAttributeArgs } from "./CreateOneAttributeArgs";
+export { DeleteManyAttributeArgs } from "./DeleteManyAttributeArgs";
+export { DeleteOneAttributeArgs } from "./DeleteOneAttributeArgs";
+export { FindFirstAttributeArgs } from "./FindFirstAttributeArgs";
+export { FindManyAttributeArgs } from "./FindManyAttributeArgs";
+export { FindUniqueAttributeArgs } from "./FindUniqueAttributeArgs";
+export { GroupByAttributeArgs } from "./GroupByAttributeArgs";
+export { UpdateManyAttributeArgs } from "./UpdateManyAttributeArgs";
+export { UpdateOneAttributeArgs } from "./UpdateOneAttributeArgs";
+export { UpsertOneAttributeArgs } from "./UpsertOneAttributeArgs";

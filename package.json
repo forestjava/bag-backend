@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "BAG | The Backend App",
+  "scripts": {
+    "install": "tsc",
+    "start": "node dist/main.js",
+    "dev": "tsc && node dist/main.js",
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "typegraphql-prisma": "^0.21.4",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.3.1",
+    "@types/graphql-fields": "^1.3.4",
+    "apollo-server": "^3.10.2",
+    "graphql": "^15.8.0",
+    "graphql-fields": "^2.0.3",
+    "graphql-scalars": "^1.18.0",
+    "prisma": "^4.3.1",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.4.0"
+  }
+}

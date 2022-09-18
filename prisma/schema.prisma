@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output = "../src/generated"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Entity {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String?
+  itemName    String
+  listName    String
+
+  attributes  Attribute[] @relation("Attributes")
+  references  Attribute[] @relation("Reference")
+}
+
+enum Type {
+  String
+  Number
+  Boolean
+  Datetime
+  Reference
+  ReferenceList
+}
+
+model Attribute {
+  id       Int    @id @default(autoincrement()) 
+  typeReferencePresents Attribute[] @relation("ReferencePresent")
+
+  entity   Entity @relation("Attributes", fields: [entityId], references: [id])
+  entityId Int
+
+  name     String
+  title    String
+  type     Type
+
+  typeReference           Entity? @relation("Reference", fields: [typeReferenceId], references: [id])
+  typeReferenceId         Int?
+
+  typeReferencePresent    Attribute? @relation("ReferencePresent", fields: [typeReferencePresentId], references: [id])
+  typeReferencePresentId  Int?
+
+  typeReferenceRelation   String?
+
+  required    Boolean?
+  placeholder String?
+  list        Boolean?
+}

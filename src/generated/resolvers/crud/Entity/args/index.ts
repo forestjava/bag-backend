@@ -1,0 +1,12 @@
+export { AggregateEntityArgs } from "./AggregateEntityArgs";
+export { CreateManyEntityArgs } from "./CreateManyEntityArgs";
+export { CreateOneEntityArgs } from "./CreateOneEntityArgs";
+export { DeleteManyEntityArgs } from "./DeleteManyEntityArgs";
+export { DeleteOneEntityArgs } from "./DeleteOneEntityArgs";
+export { FindFirstEntityArgs } from "./FindFirstEntityArgs";
+export { FindManyEntityArgs } from "./FindManyEntityArgs";
+export { FindUniqueEntityArgs } from "./FindUniqueEntityArgs";
+export { GroupByEntityArgs } from "./GroupByEntityArgs";
+export { UpdateManyEntityArgs } from "./UpdateManyEntityArgs";
+export { UpdateOneEntityArgs } from "./UpdateOneEntityArgs";
+export { UpsertOneEntityArgs } from "./UpsertOneEntityArgs";
