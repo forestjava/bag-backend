@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output = "../src/generated"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+<% for (const model of models) { %>
+model <%= model.name %> {
+  <% for (const property of model.properties) { %>
+  <%= property.name %>  <%= property.type %>  <%- property.monkeys %>  
+  <% } %>
+}
+<% } %>

@@ -58,4 +58,6 @@ model Attribute {
   required    Boolean?
   placeholder String?
   list        Boolean?
+  
+  @@index([typeReferenceRelation])
 }

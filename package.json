@@ -7,12 +7,15 @@
     "start": "node dist/main.js",
     "dev": "tsc && node dist/main.js",
     "migrate": "prisma migrate dev",
-    "generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "app:generate": "tsc && node dist/generator/index.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/ejs": "^3.1.1",
     "@types/node": "^18.7.18",
+    "ejs": "^3.1.8",
     "typegraphql-prisma": "^0.21.4",
     "typescript": "^4.8.3"
   },
