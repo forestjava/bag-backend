@@ -1,0 +1,44 @@
+import { useParams } from 'react-router-dom';
+
+import { use<%= itemNameC %>Form } from '../../api/forms/<%= itemName %>';
+
+import { Box } from '../atoms/Box';
+import { Heading } from '../atoms/Heading';
+import { Form } from '../atoms/Form';
+import { Button } from '../atoms/Button';
+
+<% for (const importComponent of detailsImports) { %>
+import { <%= importComponent %> } from './<%= importComponent %>';
+<% } %>  
+
+export const <%= itemNameC %>Details = () => {
+  const { id: parameter } = useParams();
+  const id = parameter ? parseInt(parameter) : undefined;
+
+  const form = use<%= itemNameC %>Form(id);
+
+  return (
+    <Box variant='drawer'>
+      <Heading className='text-lg font-bold'><%= itemNameC %> Details</Heading>
+      <Form className='form' onSubmit={form.submit}>
+        <% for (const attribute of itemAttributes) { %>
+        <<%= attribute.component %> label='<%= attribute.label %>' required={<%= attribute.required %>} placeholder='<%= attribute.placeholder %>' {...form.input('<%= attribute.name %>')} />
+        <% } %>
+        <Box variant='row'>
+          {!form.isCreate && (
+            <Button variant='dangerous' {...form.button()} onClick={form.remove}>
+              Remove
+            </Button>
+          )}
+          <Box className='w-full' />
+          <Button variant='primary' {...form.button('submit')}>
+            {form.isCreate ? 'Add' : 'Save'}
+          </Button>
+          <Button variant='secondary' {...form.button()} onClick={form.close}>
+            Close
+          </Button>
+        </Box>
+      </Form>
+    </Box>
+  );
+};

@@ -1,25 +1,25 @@
 import { <%= itemNameC %>, use<%= listNameC %>Query } from '../../api/generated';
 import { Box } from '../atoms/Box';
 import { ButtonProps } from '../atoms/Button';
-import { ButtonSelect } from '../atoms/ButtonSelect';
+import { ListSelect } from '../atoms/ListSelect';
 
 type Props = ButtonProps & {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   required?: boolean;
-  value?: Partial<<%= itemNameC %>>;
-  onChangeValue?: (value: Partial<<%= itemNameC %>>) => void;
+  value?: Partial<<%= itemNameC %>>[];
+  onChangeValue?: (value: Partial<<%= itemNameC %>>[]) => void;
 };
 
-export const Input<%= itemNameC %>: React.FC<Props> = ({ label, placeholder, value, onChangeValue, ...props }) => {
+export const Input<%= listNameC %>: React.FC<Props> = ({ label, value, onChangeValue, ...props }) => {
   const { data } = use<%= listNameC %>Query();
 
   return (
     <Box variant='label-input'>
       <label>{label}</label>
-      <ButtonSelect
-        placeholder={placeholder}
+      <ListSelect
         options={data?.<%= listName %>}
+        compare={(a, b) => a.id === b.id}
         present={(item) => item.<%= presentProperty %>}
         value={value}
         onChangeValue={onChangeValue}

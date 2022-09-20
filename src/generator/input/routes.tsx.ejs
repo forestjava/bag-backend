@@ -1,0 +1,11 @@
+<% for (const entity of entities) { %>
+import { <%= entity.listNameC %>List } from '../bags/<%= entity.listNameC %>List';
+<% } %>
+
+const routes = [
+  <% for (const entity of entities) { %>
+  { id: <%= entity.id %>, name: '<%= entity.listNameC %>', url: '<%= entity.listName %>', element: <<%= entity.listNameC %>List /> },
+  <% } %>
+];
+
+export default routes;
