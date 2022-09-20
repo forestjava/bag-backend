@@ -38,7 +38,6 @@ enum Type {
 
 model Attribute {
   id       Int    @id @default(autoincrement()) 
-  typeReferencePresents Attribute[] @relation("ReferencePresent")
 
   entity   Entity @relation("Attributes", fields: [entityId], references: [id])
   entityId Int
@@ -49,12 +48,9 @@ model Attribute {
 
   typeReference           Entity? @relation("Reference", fields: [typeReferenceId], references: [id])
   typeReferenceId         Int?
-
-  typeReferencePresent    Attribute? @relation("ReferencePresent", fields: [typeReferencePresentId], references: [id])
-  typeReferencePresentId  Int?
-
   typeReferenceRelation   String?
 
+  present     Boolean?
   required    Boolean?
   placeholder String?
   list        Boolean?

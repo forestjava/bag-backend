@@ -20,7 +20,7 @@ export class GroupByAttributeArgs {
   @TypeGraphQL.Field(_type => [AttributeScalarFieldEnum], {
     nullable: false
   })
-  by!: Array<"id" | "entityId" | "name" | "title" | "type" | "typeReferenceId" | "typeReferencePresentId" | "typeReferenceRelation" | "required" | "placeholder" | "list">;
+  by!: Array<"id" | "entityId" | "name" | "title" | "type" | "typeReferenceId" | "typeReferenceRelation" | "present" | "required" | "placeholder" | "list">;
 
   @TypeGraphQL.Field(_type => AttributeScalarWhereWithAggregatesInput, {
     nullable: true

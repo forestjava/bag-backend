@@ -2,8 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { AttributeUpdateManyWithoutTypeReferencePresentNestedInput } from "../inputs/AttributeUpdateManyWithoutTypeReferencePresentNestedInput";
-import { AttributeUpdateOneWithoutTypeReferencePresentsNestedInput } from "../inputs/AttributeUpdateOneWithoutTypeReferencePresentsNestedInput";
 import { EntityUpdateOneWithoutReferencesNestedInput } from "../inputs/EntityUpdateOneWithoutReferencesNestedInput";
 import { EnumTypeFieldUpdateOperationsInput } from "../inputs/EnumTypeFieldUpdateOperationsInput";
 import { NullableBoolFieldUpdateOperationsInput } from "../inputs/NullableBoolFieldUpdateOperationsInput";
@@ -14,11 +12,6 @@ import { StringFieldUpdateOperationsInput } from "../inputs/StringFieldUpdateOpe
   isAbstract: true
 })
 export class AttributeUpdateWithoutEntityInput {
-  @TypeGraphQL.Field(_type => AttributeUpdateManyWithoutTypeReferencePresentNestedInput, {
-    nullable: true
-  })
-  typeReferencePresents?: AttributeUpdateManyWithoutTypeReferencePresentNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
@@ -39,15 +32,15 @@ export class AttributeUpdateWithoutEntityInput {
   })
   typeReference?: EntityUpdateOneWithoutReferencesNestedInput | undefined;
 
-  @TypeGraphQL.Field(_type => AttributeUpdateOneWithoutTypeReferencePresentsNestedInput, {
-    nullable: true
-  })
-  typeReferencePresent?: AttributeUpdateOneWithoutTypeReferencePresentsNestedInput | undefined;
-
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {
     nullable: true
   })
   typeReferenceRelation?: NullableStringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  present?: NullableBoolFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
     nullable: true

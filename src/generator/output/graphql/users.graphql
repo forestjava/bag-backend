@@ -1,6 +1,5 @@
 query Users($orderBy: [UserOrderByWithRelationInput!]) {
   users(orderBy: $orderBy) {
-  
     id
   
     username
@@ -18,7 +17,6 @@ query Users($orderBy: [UserOrderByWithRelationInput!]) {
 
 query User($where: UserWhereUniqueInput!) {
   user(where: $where) {
-  
     id
   
     username

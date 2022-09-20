@@ -41,12 +41,12 @@ export class AttributeMaxOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  typeReferencePresentId?: "asc" | "desc" | undefined;
+  typeReferenceRelation?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
-  typeReferenceRelation?: "asc" | "desc" | undefined;
+  present?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

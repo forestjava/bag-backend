@@ -1,5 +1,6 @@
 query <%= listNameC %>($orderBy: [<%= itemNameC %>OrderByWithRelationInput!]) {
   <%= listName %>(orderBy: $orderBy) {
+    id
   <% for (const attribute of listAttributes) { %>
     <%= attribute.query %>
   <% } %>
@@ -8,6 +9,7 @@ query <%= listNameC %>($orderBy: [<%= itemNameC %>OrderByWithRelationInput!]) {
 
 query <%= itemNameC %>($where: <%= itemNameC %>WhereUniqueInput!) {
   <%= itemName %>(where: $where) {
+    id
   <% for (const attribute of itemAttributes) { %>
     <%= attribute.query %>
   <% } %>

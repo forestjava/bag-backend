@@ -21,9 +21,4 @@ export class AttributeAvgAggregate {
     nullable: true
   })
   typeReferenceId!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Float, {
-    nullable: true
-  })
-  typeReferencePresentId!: number | null;
 }

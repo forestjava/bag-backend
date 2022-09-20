@@ -38,15 +38,15 @@ export class AttributeCreateManyInput {
   })
   typeReferenceId?: number | undefined;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  typeReferencePresentId?: number | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   typeReferenceRelation?: string | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  present?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true

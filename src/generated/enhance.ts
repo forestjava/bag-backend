@@ -165,7 +165,7 @@ const relationResolversMap = {
 };
 const relationResolversInfo = {
   Entity: ["attributes", "references"],
-  Attribute: ["typeReferencePresents", "entity", "typeReference", "typeReferencePresent"]
+  Attribute: ["entity", "typeReference"]
 };
 
 type RelationResolverModelNames = keyof typeof relationResolversMap;
@@ -247,7 +247,7 @@ function applyTypeClassEnhanceConfig<
 
 const modelsInfo = {
   Entity: ["id", "name", "description", "itemName", "listName"],
-  Attribute: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"]
+  Attribute: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"]
 };
 
 type ModelNames = keyof typeof models;
@@ -289,7 +289,7 @@ const outputsInfo = {
   AggregateEntity: ["_count", "_avg", "_sum", "_min", "_max"],
   EntityGroupBy: ["id", "name", "description", "itemName", "listName", "_count", "_avg", "_sum", "_min", "_max"],
   AggregateAttribute: ["_count", "_avg", "_sum", "_min", "_max"],
-  AttributeGroupBy: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list", "_count", "_avg", "_sum", "_min", "_max"],
+  AttributeGroupBy: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list", "_count", "_avg", "_sum", "_min", "_max"],
   AffectedRowsOutput: ["count"],
   EntityCount: ["attributes", "references"],
   EntityCountAggregate: ["id", "name", "description", "itemName", "listName", "_all"],
@@ -297,12 +297,11 @@ const outputsInfo = {
   EntitySumAggregate: ["id"],
   EntityMinAggregate: ["id", "name", "description", "itemName", "listName"],
   EntityMaxAggregate: ["id", "name", "description", "itemName", "listName"],
-  AttributeCount: ["typeReferencePresents"],
-  AttributeCountAggregate: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list", "_all"],
-  AttributeAvgAggregate: ["id", "entityId", "typeReferenceId", "typeReferencePresentId"],
-  AttributeSumAggregate: ["id", "entityId", "typeReferenceId", "typeReferencePresentId"],
-  AttributeMinAggregate: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeMaxAggregate: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"]
+  AttributeCountAggregate: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list", "_all"],
+  AttributeAvgAggregate: ["id", "entityId", "typeReferenceId"],
+  AttributeSumAggregate: ["id", "entityId", "typeReferenceId"],
+  AttributeMinAggregate: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeMaxAggregate: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -348,19 +347,19 @@ const inputsInfo = {
   EntityWhereUniqueInput: ["id"],
   EntityOrderByWithAggregationInput: ["id", "name", "description", "itemName", "listName", "_count", "_avg", "_max", "_min", "_sum"],
   EntityScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "name", "description", "itemName", "listName"],
-  AttributeWhereInput: ["AND", "OR", "NOT", "id", "typeReferencePresents", "entity", "entityId", "name", "title", "type", "typeReference", "typeReferenceId", "typeReferencePresent", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeOrderByWithRelationInput: ["id", "typeReferencePresents", "entity", "entityId", "name", "title", "type", "typeReference", "typeReferenceId", "typeReferencePresent", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
+  AttributeWhereInput: ["AND", "OR", "NOT", "id", "entity", "entityId", "name", "title", "type", "typeReference", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeOrderByWithRelationInput: ["id", "entity", "entityId", "name", "title", "type", "typeReference", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
   AttributeWhereUniqueInput: ["id"],
-  AttributeOrderByWithAggregationInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list", "_count", "_avg", "_max", "_min", "_sum"],
-  AttributeScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
+  AttributeOrderByWithAggregationInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list", "_count", "_avg", "_max", "_min", "_sum"],
+  AttributeScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
   EntityCreateInput: ["name", "description", "itemName", "listName", "attributes", "references"],
   EntityUpdateInput: ["name", "description", "itemName", "listName", "attributes", "references"],
   EntityCreateManyInput: ["id", "name", "description", "itemName", "listName"],
   EntityUpdateManyMutationInput: ["name", "description", "itemName", "listName"],
-  AttributeCreateInput: ["typeReferencePresents", "entity", "name", "title", "type", "typeReference", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeUpdateInput: ["typeReferencePresents", "entity", "name", "title", "type", "typeReference", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeCreateManyInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeUpdateManyMutationInput: ["name", "title", "type", "typeReferenceRelation", "required", "placeholder", "list"],
+  AttributeCreateInput: ["entity", "name", "title", "type", "typeReference", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeUpdateInput: ["entity", "name", "title", "type", "typeReference", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeCreateManyInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeUpdateManyMutationInput: ["name", "title", "type", "typeReferenceRelation", "present", "required", "placeholder", "list"],
   IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
   StringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
@@ -377,13 +376,12 @@ const inputsInfo = {
   EntityRelationFilter: ["is", "isNot"],
   EnumTypeFilter: ["equals", "in", "notIn", "not"],
   IntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
-  AttributeRelationFilter: ["is", "isNot"],
   BoolNullableFilter: ["equals", "not"],
-  AttributeCountOrderByAggregateInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeAvgOrderByAggregateInput: ["id", "entityId", "typeReferenceId", "typeReferencePresentId"],
-  AttributeMaxOrderByAggregateInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeMinOrderByAggregateInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeSumOrderByAggregateInput: ["id", "entityId", "typeReferenceId", "typeReferencePresentId"],
+  AttributeCountOrderByAggregateInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeAvgOrderByAggregateInput: ["id", "entityId", "typeReferenceId"],
+  AttributeMaxOrderByAggregateInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeMinOrderByAggregateInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeSumOrderByAggregateInput: ["id", "entityId", "typeReferenceId"],
   EnumTypeWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
   IntNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
   BoolNullableWithAggregatesFilter: ["equals", "not", "_count", "_min", "_max"],
@@ -394,15 +392,11 @@ const inputsInfo = {
   AttributeUpdateManyWithoutEntityNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   AttributeUpdateManyWithoutTypeReferenceNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   IntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
-  AttributeCreateNestedManyWithoutTypeReferencePresentInput: ["create", "connectOrCreate", "createMany", "connect"],
   EntityCreateNestedOneWithoutAttributesInput: ["create", "connectOrCreate", "connect"],
   EntityCreateNestedOneWithoutReferencesInput: ["create", "connectOrCreate", "connect"],
-  AttributeCreateNestedOneWithoutTypeReferencePresentsInput: ["create", "connectOrCreate", "connect"],
-  AttributeUpdateManyWithoutTypeReferencePresentNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   EntityUpdateOneRequiredWithoutAttributesNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
   EnumTypeFieldUpdateOperationsInput: ["set"],
   EntityUpdateOneWithoutReferencesNestedInput: ["create", "connectOrCreate", "upsert", "disconnect", "delete", "connect", "update"],
-  AttributeUpdateOneWithoutTypeReferencePresentsNestedInput: ["create", "connectOrCreate", "upsert", "disconnect", "delete", "connect", "update"],
   NullableBoolFieldUpdateOperationsInput: ["set"],
   NullableIntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
   NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
@@ -419,43 +413,31 @@ const inputsInfo = {
   NestedIntNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
   NestedFloatNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedBoolNullableWithAggregatesFilter: ["equals", "not", "_count", "_min", "_max"],
-  AttributeCreateWithoutEntityInput: ["typeReferencePresents", "name", "title", "type", "typeReference", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
+  AttributeCreateWithoutEntityInput: ["name", "title", "type", "typeReference", "typeReferenceRelation", "present", "required", "placeholder", "list"],
   AttributeCreateOrConnectWithoutEntityInput: ["where", "create"],
   AttributeCreateManyEntityInputEnvelope: ["data", "skipDuplicates"],
-  AttributeCreateWithoutTypeReferenceInput: ["typeReferencePresents", "entity", "name", "title", "type", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
+  AttributeCreateWithoutTypeReferenceInput: ["entity", "name", "title", "type", "typeReferenceRelation", "present", "required", "placeholder", "list"],
   AttributeCreateOrConnectWithoutTypeReferenceInput: ["where", "create"],
   AttributeCreateManyTypeReferenceInputEnvelope: ["data", "skipDuplicates"],
   AttributeUpsertWithWhereUniqueWithoutEntityInput: ["where", "update", "create"],
   AttributeUpdateWithWhereUniqueWithoutEntityInput: ["where", "data"],
   AttributeUpdateManyWithWhereWithoutEntityInput: ["where", "data"],
-  AttributeScalarWhereInput: ["AND", "OR", "NOT", "id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
+  AttributeScalarWhereInput: ["AND", "OR", "NOT", "id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
   AttributeUpsertWithWhereUniqueWithoutTypeReferenceInput: ["where", "update", "create"],
   AttributeUpdateWithWhereUniqueWithoutTypeReferenceInput: ["where", "data"],
   AttributeUpdateManyWithWhereWithoutTypeReferenceInput: ["where", "data"],
-  AttributeCreateWithoutTypeReferencePresentInput: ["typeReferencePresents", "entity", "name", "title", "type", "typeReference", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeCreateOrConnectWithoutTypeReferencePresentInput: ["where", "create"],
-  AttributeCreateManyTypeReferencePresentInputEnvelope: ["data", "skipDuplicates"],
   EntityCreateWithoutAttributesInput: ["name", "description", "itemName", "listName", "references"],
   EntityCreateOrConnectWithoutAttributesInput: ["where", "create"],
   EntityCreateWithoutReferencesInput: ["name", "description", "itemName", "listName", "attributes"],
   EntityCreateOrConnectWithoutReferencesInput: ["where", "create"],
-  AttributeCreateWithoutTypeReferencePresentsInput: ["entity", "name", "title", "type", "typeReference", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeCreateOrConnectWithoutTypeReferencePresentsInput: ["where", "create"],
-  AttributeUpsertWithWhereUniqueWithoutTypeReferencePresentInput: ["where", "update", "create"],
-  AttributeUpdateWithWhereUniqueWithoutTypeReferencePresentInput: ["where", "data"],
-  AttributeUpdateManyWithWhereWithoutTypeReferencePresentInput: ["where", "data"],
   EntityUpsertWithoutAttributesInput: ["update", "create"],
   EntityUpdateWithoutAttributesInput: ["name", "description", "itemName", "listName", "references"],
   EntityUpsertWithoutReferencesInput: ["update", "create"],
   EntityUpdateWithoutReferencesInput: ["name", "description", "itemName", "listName", "attributes"],
-  AttributeUpsertWithoutTypeReferencePresentsInput: ["update", "create"],
-  AttributeUpdateWithoutTypeReferencePresentsInput: ["entity", "name", "title", "type", "typeReference", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeCreateManyEntityInput: ["id", "name", "title", "type", "typeReferenceId", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeCreateManyTypeReferenceInput: ["id", "entityId", "name", "title", "type", "typeReferencePresentId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeUpdateWithoutEntityInput: ["typeReferencePresents", "name", "title", "type", "typeReference", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeUpdateWithoutTypeReferenceInput: ["typeReferencePresents", "entity", "name", "title", "type", "typeReferencePresent", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeCreateManyTypeReferencePresentInput: ["id", "entityId", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "required", "placeholder", "list"],
-  AttributeUpdateWithoutTypeReferencePresentInput: ["typeReferencePresents", "entity", "name", "title", "type", "typeReference", "typeReferenceRelation", "required", "placeholder", "list"]
+  AttributeCreateManyEntityInput: ["id", "name", "title", "type", "typeReferenceId", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeCreateManyTypeReferenceInput: ["id", "entityId", "name", "title", "type", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeUpdateWithoutEntityInput: ["name", "title", "type", "typeReference", "typeReferenceRelation", "present", "required", "placeholder", "list"],
+  AttributeUpdateWithoutTypeReferenceInput: ["entity", "name", "title", "type", "typeReferenceRelation", "present", "required", "placeholder", "list"]
 };
 
 type InputTypesNames = keyof typeof inputTypes;

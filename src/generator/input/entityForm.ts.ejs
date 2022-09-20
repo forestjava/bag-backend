@@ -1,0 +1,94 @@
+import { invalidate } from '../../components/providers/DataAccessProvider';
+import redundants from '../../utils/redundants';
+import { useXForm } from '../../utils/xform';
+
+import {
+  use<%= itemNameC %>Query,
+  <%= itemNameC %>CreateInput,
+  <%= itemNameC %>UpdateInput,
+  useCreateOne<%= itemNameC %>Mutation,
+  useDeleteOne<%= itemNameC %>Mutation,
+  useUpdateOne<%= itemNameC %>Mutation,
+} from '../generated';
+
+const LIST_QUERY_KEY = '<%= listNameC %>';
+const ITEM_QUERY_KEY = '<%= itemNameC %>';
+
+export const use<%= itemNameC %>Form = (id?: number) => {
+  const isCreate = !id;
+
+  const key = { id };
+
+  const { data, isLoading } = use<%= itemNameC %>Query({ where: key }, { enabled: !isCreate });
+
+  const form = useXForm({ defaultValues: data?.<%= itemName %>, disabled: isLoading && !isCreate });
+
+  const create = useCreateOne<%= itemNameC %>Mutation().mutateAsync;
+  const update = useUpdateOne<%= itemNameC %>Mutation().mutateAsync;
+  const remove = useDeleteOne<%= itemNameC %>Mutation().mutateAsync;
+
+  const createElement = async () => {
+    const input: <%= itemNameC %>CreateInput = {};
+    <% for (const attribute of itemAttributes) { %>
+      <% if (attribute.isPrimitive) { %>
+    input.<%= attribute.name %> = form.values.<%= attribute.name %>;
+      <% } %>
+      <% if (attribute.isReference) { %>
+    input.<%= attribute.name %> = { connect: { id: form.values.<%= attribute.name %>?.id } };
+      <% } %>
+      <% if (attribute.isReferenceList) { %>
+    input.<%= attribute.name %> = { connect: form.values.<%= attribute.name %>?.map((item) => ({ id: item.id })) };
+      <% } %>  
+    <% } %>
+    await create({ data: input });
+    await invalidate(LIST_QUERY_KEY);
+    form.close();
+  };
+
+  const updateElement = async () => {
+    const input: <%= itemNameC %>UpdateInput = {};
+    <% for (const attribute of itemAttributes) { %>
+      <% if (attribute.isPrimitive) { %>
+    input.<%= attribute.name %> = { set: form.values.<%= attribute.name %> };
+      <% } %>
+      <% if (attribute.isReference) { %>
+    input.<%= attribute.name %> = { connect: { id: form.values.<%= attribute.name %>?.id } };
+      <% } %>
+      <% if (attribute.isReferenceList) { %>
+    input.<%= attribute.name %> = {
+      connect: redundants(form.values.<%= attribute.name %>, data?.<%= itemName %>?.<%= attribute.name %>)?.map((item) => ({ id: item.id })),
+      disconnect: redundants(data?.<%= itemName %>?.<%= attribute.name %>, form.values.<%= attribute.name %>)?.map((item) => ({ id: item.id })),
+    };
+      <% } %>
+    <% } %>
+    await update({ where: key, data: input });
+    await invalidate(LIST_QUERY_KEY);
+    await invalidate(ITEM_QUERY_KEY);
+    form.close();
+  };
+
+  const removeElement = async () => {
+    await remove({ where: key });
+    await invalidate(LIST_QUERY_KEY);
+    form.close();
+  };
+
+  const submit = () => {
+    if (isCreate) createElement();
+    else updateElement();
+  };
+
+  return {
+    isCreate,
+    input: form.input,
+    button: form.button,
+    create: createElement,
+    remove: removeElement,
+    update: updateElement,
+    submit: form.handleSubmit(submit),
+    values: form.values,
+    reset: form.reset,
+    modified: form.modified,
+    close: form.close,
+  };
+};

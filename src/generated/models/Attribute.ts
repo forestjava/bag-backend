@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../scalars";
 import { Entity } from "../models/Entity";
 import { Type } from "../enums/Type";
-import { AttributeCount } from "../resolvers/outputs/AttributeCount";
 
 @TypeGraphQL.ObjectType("Attribute", {
   isAbstract: true
@@ -14,8 +13,6 @@ export class Attribute {
     nullable: false
   })
   id!: number;
-
-  typeReferencePresents?: Attribute[];
 
   entity?: Entity;
 
@@ -46,17 +43,15 @@ export class Attribute {
   })
   typeReferenceId?: number | null;
 
-  typeReferencePresent?: Attribute | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  typeReferencePresentId?: number | null;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   typeReferenceRelation?: string | null;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  present?: boolean | null;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true
@@ -72,9 +67,4 @@ export class Attribute {
     nullable: true
   })
   list?: boolean | null;
-
-  @TypeGraphQL.Field(_type => AttributeCount, {
-    nullable: true
-  })
-  _count?: AttributeCount | null;
 }

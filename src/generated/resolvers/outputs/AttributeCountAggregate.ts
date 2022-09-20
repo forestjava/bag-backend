@@ -40,12 +40,12 @@ export class AttributeCountAggregate {
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  typeReferencePresentId!: number;
+  typeReferenceRelation!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false
   })
-  typeReferenceRelation!: number;
+  present!: number;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: false

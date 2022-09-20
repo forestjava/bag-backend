@@ -2,8 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { AttributeCreateNestedManyWithoutTypeReferencePresentInput } from "../inputs/AttributeCreateNestedManyWithoutTypeReferencePresentInput";
-import { AttributeCreateNestedOneWithoutTypeReferencePresentsInput } from "../inputs/AttributeCreateNestedOneWithoutTypeReferencePresentsInput";
 import { EntityCreateNestedOneWithoutReferencesInput } from "../inputs/EntityCreateNestedOneWithoutReferencesInput";
 import { Type } from "../../enums/Type";
 
@@ -11,11 +9,6 @@ import { Type } from "../../enums/Type";
   isAbstract: true
 })
 export class AttributeCreateWithoutEntityInput {
-  @TypeGraphQL.Field(_type => AttributeCreateNestedManyWithoutTypeReferencePresentInput, {
-    nullable: true
-  })
-  typeReferencePresents?: AttributeCreateNestedManyWithoutTypeReferencePresentInput | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
@@ -36,15 +29,15 @@ export class AttributeCreateWithoutEntityInput {
   })
   typeReference?: EntityCreateNestedOneWithoutReferencesInput | undefined;
 
-  @TypeGraphQL.Field(_type => AttributeCreateNestedOneWithoutTypeReferencePresentsInput, {
-    nullable: true
-  })
-  typeReferencePresent?: AttributeCreateNestedOneWithoutTypeReferencePresentsInput | undefined;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   typeReferenceRelation?: string | undefined;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  present?: boolean | undefined;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true

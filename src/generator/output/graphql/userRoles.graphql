@@ -1,6 +1,5 @@
 query UserRoles($orderBy: [UserRoleOrderByWithRelationInput!]) {
   userRoles(orderBy: $orderBy) {
-  
     id
   
     name
@@ -10,7 +9,6 @@ query UserRoles($orderBy: [UserRoleOrderByWithRelationInput!]) {
 
 query UserRole($where: UserRoleWhereUniqueInput!) {
   userRole(where: $where) {
-  
     id
   
     name

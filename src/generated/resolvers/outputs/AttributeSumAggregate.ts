@@ -21,9 +21,4 @@ export class AttributeSumAggregate {
     nullable: true
   })
   typeReferenceId!: number | null;
-
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  typeReferencePresentId!: number | null;
 }

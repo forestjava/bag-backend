@@ -58,15 +58,15 @@ export class AttributeScalarWhereInput {
   })
   typeReferenceId?: IntNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntNullableFilter, {
-    nullable: true
-  })
-  typeReferencePresentId?: IntNullableFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
   typeReferenceRelation?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BoolNullableFilter, {
+    nullable: true
+  })
+  present?: BoolNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolNullableFilter, {
     nullable: true

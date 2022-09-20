@@ -2,11 +2,16 @@ import _ from 'lodash';
 import { Attribute, Entity } from '../generated';
 
 type AttributeMetadata = {
+  name: string;
   query: string;
+  isReference?: boolean;
+  isReferenceList?: boolean;
+  isPrimitive?: boolean;
 };
 
 type EntityMetadata = {
   fileGraphQL: string;
+  fileForm: string;
 
   itemName: string;
   itemNameC: string;
@@ -19,30 +24,35 @@ type EntityMetadata = {
 
 type Metadata = EntityMetadata[];
 
-const id: AttributeMetadata = { query: 'id' };
-
 const createAttributeMetadata = (attribute: Attribute): AttributeMetadata => {
+  const name = attribute.name;
   let query: string;
-  if (attribute.type === 'Reference' || attribute.type === 'ReferenceList') {
+  let isReference: boolean = false;
+  let isReferenceList: boolean = false;
+  let isPrimitive: boolean = false;
+
+  if (attribute.type === 'Reference') {
     query = `${attribute.name} { id ${attribute.typeReferencePresent.name} }`;
+    isReference = true;
+  } else if (attribute.type === 'ReferenceList') {
+    query = `${attribute.name} { id ${attribute.typeReferencePresent.name} }`;
+    isReferenceList = true;
   } else {
     query = attribute.name;
+    isPrimitive = true;
   }
-  return { query };
+  return { name, query, isReference, isReferenceList, isPrimitive };
 };
 
-const createItemAttributes = (entity: Entity): AttributeMetadata[] => [
-  id,
-  ...entity.attributes.map((attribute) => createAttributeMetadata(attribute)),
-];
+const createItemAttributes = (entity: Entity): AttributeMetadata[] =>
+  entity.attributes.map((attribute) => createAttributeMetadata(attribute));
 
-const createListAttributes = (entity: Entity): AttributeMetadata[] => [
-  id,
-  ...entity.attributes.filter((attribute) => attribute.list).map((attribute) => createAttributeMetadata(attribute)),
-];
+const createListAttributes = (entity: Entity): AttributeMetadata[] =>
+  entity.attributes.filter((attribute) => attribute.list).map((attribute) => createAttributeMetadata(attribute));
 
 const createEntityMetadata = (entity: Entity): EntityMetadata => ({
   fileGraphQL: `graphql/${entity.listName}.graphql`,
+  fileForm: `forms/${entity.itemName}.ts`,
 
   itemName: entity.itemName,
   itemNameC: _.upperFirst(entity.itemName),

@@ -2,7 +2,6 @@ export { AffectedRowsOutput } from "./AffectedRowsOutput";
 export { AggregateAttribute } from "./AggregateAttribute";
 export { AggregateEntity } from "./AggregateEntity";
 export { AttributeAvgAggregate } from "./AttributeAvgAggregate";
-export { AttributeCount } from "./AttributeCount";
 export { AttributeCountAggregate } from "./AttributeCountAggregate";
 export { AttributeGroupBy } from "./AttributeGroupBy";
 export { AttributeMaxAggregate } from "./AttributeMaxAggregate";

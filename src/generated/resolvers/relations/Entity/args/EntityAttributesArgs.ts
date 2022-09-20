@@ -35,5 +35,5 @@ export class EntityAttributesArgs {
   @TypeGraphQL.Field(_type => [AttributeScalarFieldEnum], {
     nullable: true
   })
-  distinct?: Array<"id" | "entityId" | "name" | "title" | "type" | "typeReferenceId" | "typeReferencePresentId" | "typeReferenceRelation" | "required" | "placeholder" | "list"> | undefined;
+  distinct?: Array<"id" | "entityId" | "name" | "title" | "type" | "typeReferenceId" | "typeReferenceRelation" | "present" | "required" | "placeholder" | "list"> | undefined;
 }

@@ -58,15 +58,15 @@ export class AttributeScalarWhereWithAggregatesInput {
   })
   typeReferenceId?: IntNullableWithAggregatesFilter | undefined;
 
-  @TypeGraphQL.Field(_type => IntNullableWithAggregatesFilter, {
-    nullable: true
-  })
-  typeReferencePresentId?: IntNullableWithAggregatesFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringNullableWithAggregatesFilter, {
     nullable: true
   })
   typeReferenceRelation?: StringNullableWithAggregatesFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BoolNullableWithAggregatesFilter, {
+    nullable: true
+  })
+  present?: BoolNullableWithAggregatesFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolNullableWithAggregatesFilter, {
     nullable: true

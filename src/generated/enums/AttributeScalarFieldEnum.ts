@@ -7,8 +7,8 @@ export enum AttributeScalarFieldEnum {
   title = "title",
   type = "type",
   typeReferenceId = "typeReferenceId",
-  typeReferencePresentId = "typeReferencePresentId",
   typeReferenceRelation = "typeReferenceRelation",
+  present = "present",
   required = "required",
   placeholder = "placeholder",
   list = "list"

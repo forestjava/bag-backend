@@ -7,7 +7,8 @@ import { createMetadata } from './frontend-metadata';
 
 const prisma = new PrismaClient();
 
-const input = './src/generator/input/entity.graphql.ejs';
+const inputGraphQL = './src/generator/input/entityQueries.graphql.ejs';
+const inputForm = './src/generator/input/entityForm.ts.ejs';
 const output = process.argv[2] || './src/generator/output/';
 
 async function main() {
@@ -26,9 +27,11 @@ async function main() {
   const results = [];
 
   metadata.forEach(async (entity) => {
-    const content = await ejs.renderFile(input, entity);
-    const result = fs.writeFile(`${output}${entity.fileGraphQL}`, content);
-    results.push(result);
+    const graphql = await ejs.renderFile(inputGraphQL, entity);
+    results.push(fs.writeFile(`${output}${entity.fileGraphQL}`, graphql));
+
+    const form = await ejs.renderFile(inputForm, entity);
+    results.push(fs.writeFile(`${output}${entity.fileForm}`, form));
   });
 
   await Promise.all(results);

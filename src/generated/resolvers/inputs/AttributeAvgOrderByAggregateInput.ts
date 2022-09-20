@@ -22,9 +22,4 @@ export class AttributeAvgOrderByAggregateInput {
     nullable: true
   })
   typeReferenceId?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  typeReferencePresentId?: "asc" | "desc" | undefined;
 }

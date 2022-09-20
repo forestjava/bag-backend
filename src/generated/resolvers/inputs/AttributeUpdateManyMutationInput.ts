@@ -34,6 +34,11 @@ export class AttributeUpdateManyMutationInput {
   @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
     nullable: true
   })
+  present?: NullableBoolFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => NullableBoolFieldUpdateOperationsInput, {
+    nullable: true
+  })
   required?: NullableBoolFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => NullableStringFieldUpdateOperationsInput, {

@@ -2,7 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { AttributeOrderByRelationAggregateInput } from "../inputs/AttributeOrderByRelationAggregateInput";
 import { EntityOrderByWithRelationInput } from "../inputs/EntityOrderByWithRelationInput";
 import { SortOrder } from "../../enums/SortOrder";
 
@@ -14,11 +13,6 @@ export class AttributeOrderByWithRelationInput {
     nullable: true
   })
   id?: "asc" | "desc" | undefined;
-
-  @TypeGraphQL.Field(_type => AttributeOrderByRelationAggregateInput, {
-    nullable: true
-  })
-  typeReferencePresents?: AttributeOrderByRelationAggregateInput | undefined;
 
   @TypeGraphQL.Field(_type => EntityOrderByWithRelationInput, {
     nullable: true
@@ -55,20 +49,15 @@ export class AttributeOrderByWithRelationInput {
   })
   typeReferenceId?: "asc" | "desc" | undefined;
 
-  @TypeGraphQL.Field(_type => AttributeOrderByWithRelationInput, {
-    nullable: true
-  })
-  typeReferencePresent?: AttributeOrderByWithRelationInput | undefined;
-
-  @TypeGraphQL.Field(_type => SortOrder, {
-    nullable: true
-  })
-  typeReferencePresentId?: "asc" | "desc" | undefined;
-
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
   typeReferenceRelation?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
+  present?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true

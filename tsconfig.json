@@ -11,5 +11,6 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/generator/output"]
 }

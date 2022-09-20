@@ -2,8 +2,6 @@ import * as TypeGraphQL from "type-graphql";
 import * as GraphQLScalars from "graphql-scalars";
 import { Prisma } from "@prisma/client";
 import { DecimalJSScalar } from "../../scalars";
-import { AttributeListRelationFilter } from "../inputs/AttributeListRelationFilter";
-import { AttributeRelationFilter } from "../inputs/AttributeRelationFilter";
 import { BoolNullableFilter } from "../inputs/BoolNullableFilter";
 import { EntityRelationFilter } from "../inputs/EntityRelationFilter";
 import { EnumTypeFilter } from "../inputs/EnumTypeFilter";
@@ -35,11 +33,6 @@ export class AttributeWhereInput {
     nullable: true
   })
   id?: IntFilter | undefined;
-
-  @TypeGraphQL.Field(_type => AttributeListRelationFilter, {
-    nullable: true
-  })
-  typeReferencePresents?: AttributeListRelationFilter | undefined;
 
   @TypeGraphQL.Field(_type => EntityRelationFilter, {
     nullable: true
@@ -76,20 +69,15 @@ export class AttributeWhereInput {
   })
   typeReferenceId?: IntNullableFilter | undefined;
 
-  @TypeGraphQL.Field(_type => AttributeRelationFilter, {
-    nullable: true
-  })
-  typeReferencePresent?: AttributeRelationFilter | undefined;
-
-  @TypeGraphQL.Field(_type => IntNullableFilter, {
-    nullable: true
-  })
-  typeReferencePresentId?: IntNullableFilter | undefined;
-
   @TypeGraphQL.Field(_type => StringNullableFilter, {
     nullable: true
   })
   typeReferenceRelation?: StringNullableFilter | undefined;
+
+  @TypeGraphQL.Field(_type => BoolNullableFilter, {
+    nullable: true
+  })
+  present?: BoolNullableFilter | undefined;
 
   @TypeGraphQL.Field(_type => BoolNullableFilter, {
     nullable: true

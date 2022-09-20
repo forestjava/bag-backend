@@ -43,15 +43,15 @@ export class AttributeGroupBy {
   })
   typeReferenceId!: number | null;
 
-  @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
-    nullable: true
-  })
-  typeReferencePresentId!: number | null;
-
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   typeReferenceRelation!: string | null;
+
+  @TypeGraphQL.Field(_type => Boolean, {
+    nullable: true
+  })
+  present!: boolean | null;
 
   @TypeGraphQL.Field(_type => Boolean, {
     nullable: true

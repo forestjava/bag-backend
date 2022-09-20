@@ -1,6 +1,5 @@
 query UserGroups($orderBy: [UserGroupOrderByWithRelationInput!]) {
   userGroups(orderBy: $orderBy) {
-  
     id
   
     name
@@ -10,7 +9,6 @@ query UserGroups($orderBy: [UserGroupOrderByWithRelationInput!]) {
 
 query UserGroup($where: UserGroupWhereUniqueInput!) {
   userGroup(where: $where) {
-  
     id
   
     name
