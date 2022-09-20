@@ -4,7 +4,7 @@ export enum Type {
   String = "String",
   Number = "Number",
   Boolean = "Boolean",
-  Datetime = "Datetime",
+  Moment = "Moment",
   Reference = "Reference",
   ReferenceList = "ReferenceList"
 }

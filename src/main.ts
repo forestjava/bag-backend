@@ -27,14 +27,14 @@ async function bootstrap() {
   const server = new ApolloServer({
     schema,
     introspection: true,
-    context: ({ req, res }) => {
+    context: ({ req }) => {
       const auth = req.headers['x-bag-secret'];
       if (auth !== process.env.BAG_SECRET) throw new HttpQueryError(403, 'Forbidden');
       return { prisma };
     },
   });
 
-  const { url } = await server.listen();
+  const { url } = await server.listen({ port: process.env.PORT || 4000 });
   console.log(`🚀 Server ready at ${url}`);
 }
 bootstrap();

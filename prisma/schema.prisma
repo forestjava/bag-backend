@@ -31,7 +31,7 @@ enum Type {
   String
   Number
   Boolean
-  Datetime
+  Moment
   Reference
   ReferenceList
 }

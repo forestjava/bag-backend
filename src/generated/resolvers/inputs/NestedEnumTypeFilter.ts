@@ -11,17 +11,17 @@ export class NestedEnumTypeFilter {
   @TypeGraphQL.Field(_type => Type, {
     nullable: true
   })
-  equals?: "String" | "Number" | "Boolean" | "Datetime" | "Reference" | "ReferenceList" | undefined;
+  equals?: "String" | "Number" | "Boolean" | "Moment" | "Reference" | "ReferenceList" | undefined;
 
   @TypeGraphQL.Field(_type => [Type], {
     nullable: true
   })
-  in?: Array<"String" | "Number" | "Boolean" | "Datetime" | "Reference" | "ReferenceList"> | undefined;
+  in?: Array<"String" | "Number" | "Boolean" | "Moment" | "Reference" | "ReferenceList"> | undefined;
 
   @TypeGraphQL.Field(_type => [Type], {
     nullable: true
   })
-  notIn?: Array<"String" | "Number" | "Boolean" | "Datetime" | "Reference" | "ReferenceList"> | undefined;
+  notIn?: Array<"String" | "Number" | "Boolean" | "Moment" | "Reference" | "ReferenceList"> | undefined;
 
   @TypeGraphQL.Field(_type => NestedEnumTypeFilter, {
     nullable: true

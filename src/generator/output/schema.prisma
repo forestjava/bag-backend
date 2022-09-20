@@ -156,3 +156,43 @@ model Event {
   priority  AlertPriority?  @relation("8a8d07f5-c4e7-42a9-850f-bbd01a593652", fields: [priorityId], references: [id])  
   
 }
+
+model User {
+  
+  id  Int  @id @default(autoincrement())  
+  
+  username  String?    
+  
+  firstName  String?    
+  
+  lastName  String?    
+  
+  email  String?    
+  
+  roleId  Int?    
+  
+  role  UserRole?  @relation("1e8cb4f6-ac2d-4afb-826b-be775cef945b", fields: [roleId], references: [id])  
+  
+  groups  UserGroup[]  @relation("7be49552-d562-4085-b242-164b3a26d6ed")  
+  
+}
+
+model UserRole {
+  
+  id  Int  @id @default(autoincrement())  
+  
+  name  String?    
+  
+  users  User[]  @relation("1e8cb4f6-ac2d-4afb-826b-be775cef945b")  
+  
+}
+
+model UserGroup {
+  
+  id  Int  @id @default(autoincrement())  
+  
+  name  String?    
+  
+  users  User[]  @relation("7be49552-d562-4085-b242-164b3a26d6ed")  
+  
+}

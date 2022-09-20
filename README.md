@@ -45,18 +45,24 @@ DATABASE_URL="postgres://postgres:customerpassword@localhost:5433/postgres"
 
 ## Usage
 ```
-npm start dev
+npm run dev
 ```
 
 ## Deploy
 ```
 npx prisma migrate deploy
-npm install
+npm run install
 npm start
 ```
 
-## Using schema generator
+## Using generators
 ```
-npm run app:generate
+npm run generate:backend
 ```
 generates `schema.prisma` file to `src\generator\output\` by default
+
+and,
+```
+npm run generate:frontend
+```
+generates `..\gen-frontend` folder using `..\pattern-frontend` folder by default

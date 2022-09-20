@@ -31,7 +31,7 @@ export class AttributeMaxAggregate {
   @TypeGraphQL.Field(_type => Type, {
     nullable: true
   })
-  type!: "String" | "Number" | "Boolean" | "Datetime" | "Reference" | "ReferenceList" | null;
+  type!: "String" | "Number" | "Boolean" | "Moment" | "Reference" | "ReferenceList" | null;
 
   @TypeGraphQL.Field(_type => TypeGraphQL.Int, {
     nullable: true

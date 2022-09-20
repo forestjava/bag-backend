@@ -11,5 +11,5 @@ export class EnumTypeFieldUpdateOperationsInput {
   @TypeGraphQL.Field(_type => Type, {
     nullable: true
   })
-  set?: "String" | "Number" | "Boolean" | "Datetime" | "Reference" | "ReferenceList" | undefined;
+  set?: "String" | "Number" | "Boolean" | "Moment" | "Reference" | "ReferenceList" | undefined;
 }

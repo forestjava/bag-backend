@@ -29,7 +29,7 @@ export class AttributeCreateWithoutEntityInput {
   @TypeGraphQL.Field(_type => Type, {
     nullable: false
   })
-  type!: "String" | "Number" | "Boolean" | "Datetime" | "Reference" | "ReferenceList";
+  type!: "String" | "Number" | "Boolean" | "Moment" | "Reference" | "ReferenceList";
 
   @TypeGraphQL.Field(_type => EntityCreateNestedOneWithoutReferencesInput, {
     nullable: true

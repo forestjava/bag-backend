@@ -8,7 +8,7 @@
     "dev": "tsc && node dist/main.js",
     "migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
-    "app:generate": "tsc && node dist/generator/index.js"
+    "generate:backend": "tsc && node dist/generator/index.js"
   },
   "author": "",
   "license": "ISC",
