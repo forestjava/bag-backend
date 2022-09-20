@@ -16,8 +16,11 @@ async function main() {
     include: {
       attributes: {
         include: {
-          typeReference: true,
-          typeReferencePresent: true,
+          typeReference: {
+            include: {
+              attributes: true,
+            },
+          },
         },
       },
     },

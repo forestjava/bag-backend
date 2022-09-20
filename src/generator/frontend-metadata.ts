@@ -24,6 +24,12 @@ type EntityMetadata = {
 
 type Metadata = EntityMetadata[];
 
+const getPresent = (typeReference: Entity): string => {
+  const attributes = typeReference.attributes.filter((attribute) => attribute.present);
+  if (attributes.length === 0) return 'id';
+  else return attributes[0].name;
+};
+
 const createAttributeMetadata = (attribute: Attribute): AttributeMetadata => {
   const name = attribute.name;
   let query: string;
@@ -32,10 +38,10 @@ const createAttributeMetadata = (attribute: Attribute): AttributeMetadata => {
   let isPrimitive: boolean = false;
 
   if (attribute.type === 'Reference') {
-    query = `${attribute.name} { id ${attribute.typeReferencePresent.name} }`;
+    query = `${attribute.name} { id ${getPresent(attribute.typeReference)} }`;
     isReference = true;
   } else if (attribute.type === 'ReferenceList') {
-    query = `${attribute.name} { id ${attribute.typeReferencePresent.name} }`;
+    query = `${attribute.name} { id ${getPresent(attribute.typeReference)} }`;
     isReferenceList = true;
   } else {
     query = attribute.name;
