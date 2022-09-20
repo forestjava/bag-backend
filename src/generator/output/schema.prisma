@@ -17,163 +17,23 @@ datasource db {
 }
 
 
-model Company {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  name  String?    
-  
-  regions  Region[]  @relation("1128b17a-6b22-4c6a-8bbe-7618cf5688f1")  
-  
-}
-
-model Region {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  name  String?    
-  
-  formations  Formation[]  @relation("d29943c6-118a-4eff-a494-6f867dd3d720")  
-  
-  companyId  Int?    
-  
-  company  Company?  @relation("1128b17a-6b22-4c6a-8bbe-7618cf5688f1", fields: [companyId], references: [id])  
-  
-}
-
-model Formation {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  name  String?    
-  
-  solutions  Solution[]  @relation("0fd51c24-bfe3-4d6e-86f7-2edb50f65d3d")  
-  
-  zones  Zone[]  @relation("0460dd37-4ac3-450c-9eab-afb34b81ae53")  
-  
-  regionId  Int?    
-  
-  region  Region?  @relation("d29943c6-118a-4eff-a494-6f867dd3d720", fields: [regionId], references: [id])  
-  
-}
-
-model Device {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  alerts  Alerts[]  @relation("ef4a3dad-6c6e-4b25-92f7-0ac678ea6c04")  
-  
-  typeId  Int?    
-  
-  type  DeviceType?  @relation("35ad46da-973d-40b8-bf7c-840895ef09ad", fields: [typeId], references: [id])  
-  
-  uuid  String?    
-  
-  events  Event[]  @relation("2629d0f7-83fb-4b98-825d-9e81739a5852")  
-  
-  zoneId  Int?    
-  
-  zone  Zone?  @relation("922c4fc7-c2b7-42a5-81eb-98be4bce234a", fields: [zoneId], references: [id])  
-  
-}
-
-model Solution {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  name  String?    
-  
-  formations  Formation[]  @relation("0fd51c24-bfe3-4d6e-86f7-2edb50f65d3d")  
-  
-}
-
-model Alerts {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  priorityId  Int?    
-  
-  priority  AlertPriority?  @relation("d9fce365-62fb-4f24-ac29-5457bc23a039", fields: [priorityId], references: [id])  
-  
-  message  String?    
-  
-  deviceId  Int?    
-  
-  device  Device?  @relation("ef4a3dad-6c6e-4b25-92f7-0ac678ea6c04", fields: [deviceId], references: [id])  
-  
-}
-
-model AlertPriority {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  name  String?    
-  
-  alerts  Alerts[]  @relation("d9fce365-62fb-4f24-ac29-5457bc23a039")  
-  
-  events  Event[]  @relation("8a8d07f5-c4e7-42a9-850f-bbd01a593652")  
-  
-}
-
-model Zone {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  name  String?    
-  
-  devices  Device[]  @relation("922c4fc7-c2b7-42a5-81eb-98be4bce234a")  
-  
-  formationId  Int?    
-  
-  formation  Formation?  @relation("0460dd37-4ac3-450c-9eab-afb34b81ae53", fields: [formationId], references: [id])  
-  
-}
-
-model DeviceType {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  name  String?    
-  
-  devices  Device[]  @relation("35ad46da-973d-40b8-bf7c-840895ef09ad")  
-  
-}
-
-model Event {
-  
-  id  Int  @id @default(autoincrement())  
-  
-  moment  DateTime?    
-  
-  deviceId  Int?    
-  
-  device  Device?  @relation("2629d0f7-83fb-4b98-825d-9e81739a5852", fields: [deviceId], references: [id])  
-  
-  message  String?    
-  
-  priorityId  Int?    
-  
-  priority  AlertPriority?  @relation("8a8d07f5-c4e7-42a9-850f-bbd01a593652", fields: [priorityId], references: [id])  
-  
-}
-
 model User {
   
   id  Int  @id @default(autoincrement())  
   
   username  String?    
   
-  firstName  String?    
-  
   lastName  String?    
+  
+  firstName  String?    
   
   email  String?    
   
   roleId  Int?    
   
-  role  UserRole?  @relation("1e8cb4f6-ac2d-4afb-826b-be775cef945b", fields: [roleId], references: [id])  
+  role  UserRole?  @relation("3b6e5a47-eb00-43cb-84bb-6f2ee661b472", fields: [roleId], references: [id])  
   
-  groups  UserGroup[]  @relation("7be49552-d562-4085-b242-164b3a26d6ed")  
+  groups  UserGroup[]  @relation("44448284-3fdf-4810-a924-e77a0f6bedb9")  
   
 }
 
@@ -183,7 +43,7 @@ model UserRole {
   
   name  String?    
   
-  users  User[]  @relation("1e8cb4f6-ac2d-4afb-826b-be775cef945b")  
+  users  User[]  @relation("3b6e5a47-eb00-43cb-84bb-6f2ee661b472")  
   
 }
 
@@ -193,6 +53,6 @@ model UserGroup {
   
   name  String?    
   
-  users  User[]  @relation("7be49552-d562-4085-b242-164b3a26d6ed")  
+  users  User[]  @relation("44448284-3fdf-4810-a924-e77a0f6bedb9")  
   
 }

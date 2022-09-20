@@ -19,7 +19,7 @@ const TypesMap: Record<Type, string> = {
   String: 'String',
   Number: 'Float',
   Boolean: 'Boolean',
-  Datetime: 'DateTime',
+  Moment: 'DateTime',
   Reference: '#ref?',
   ReferenceList: '#ref?',
 };

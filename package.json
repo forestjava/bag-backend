@@ -6,9 +6,8 @@
     "install": "tsc",
     "start": "node dist/main.js",
     "dev": "tsc && node dist/main.js",
-    "migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
-    "generate:backend": "tsc && node dist/generator/index.js"
+    "generate:backend": "tsc && node dist/generator/backend.js"
   },
   "author": "",
   "license": "ISC",
