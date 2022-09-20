@@ -3,12 +3,12 @@ import { promises as fs } from 'fs';
 import ejs from 'ejs';
 
 import { PrismaClient } from '@prisma/client';
-import { createMetadata } from './backend-metadata';
+import { createMetadata } from './frontend-metadata';
 
 const prisma = new PrismaClient();
 
-const input = './src/generator/input/schema.prisma.ejs';
-const output = process.argv[2] || './src/generator/output/schema.prisma';
+const input = './src/generator/input/entity.graphql.ejs';
+const output = process.argv[2] || './src/generator/output/';
 
 async function main() {
   const entities = await prisma.entity.findMany({
@@ -16,15 +16,22 @@ async function main() {
       attributes: {
         include: {
           typeReference: true,
+          typeReferencePresent: true,
         },
       },
     },
   });
 
   const metadata = createMetadata(entities);
+  const results = [];
 
-  const content = await ejs.renderFile(input, metadata);
-  await fs.writeFile(output, content);
+  metadata.forEach(async (entity) => {
+    const content = await ejs.renderFile(input, entity);
+    const result = fs.writeFile(`${output}${entity.fileGraphQL}`, content);
+    results.push(result);
+  });
+
+  await Promise.all(results);
 }
 
 main()

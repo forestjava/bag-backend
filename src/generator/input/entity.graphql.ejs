@@ -1,0 +1,33 @@
+query <%= listNameC %>($orderBy: [<%= itemNameC %>OrderByWithRelationInput!]) {
+  <%= listName %>(orderBy: $orderBy) {
+  <% for (const attribute of listAttributes) { %>
+    <%= attribute.query %>
+  <% } %>
+  }
+}
+
+query <%= itemNameC %>($where: <%= itemNameC %>WhereUniqueInput!) {
+  <%= itemName %>(where: $where) {
+  <% for (const attribute of itemAttributes) { %>
+    <%= attribute.query %>
+  <% } %>
+  }
+}
+
+mutation CreateOne<%= itemNameC %>($data: <%= itemNameC %>CreateInput!) {
+  createOne<%= itemNameC %>(data: $data) {
+    id
+  }
+}
+
+mutation UpdateOne<%= itemNameC %>($data: <%= itemNameC %>UpdateInput!, $where: <%= itemNameC %>WhereUniqueInput!) {
+  updateOne<%= itemNameC %>(data: $data, where: $where) {
+    id
+  }
+}
+
+mutation DeleteOne<%= itemNameC %>($where: <%= itemNameC %>WhereUniqueInput!) {
+  deleteOne<%= itemNameC %>(where: $where) {
+    id
+  }
+}

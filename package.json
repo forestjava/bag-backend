@@ -7,12 +7,14 @@
     "start": "node dist/main.js",
     "dev": "tsc && node dist/main.js",
     "prisma:generate": "prisma generate",
-    "generate:backend": "tsc && node dist/generator/backend.js"
+    "generate:backend": "tsc && node dist/generator/backend.js",
+    "generate:frontend": "tsc && node dist/generator/frontend.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/ejs": "^3.1.1",
+    "@types/lodash": "^4.14.185",
     "@types/node": "^18.7.18",
     "ejs": "^3.1.8",
     "typegraphql-prisma": "^0.21.4",
@@ -25,6 +27,7 @@
     "graphql": "^15.8.0",
     "graphql-fields": "^2.0.3",
     "graphql-scalars": "^1.18.0",
+    "lodash": "^4.17.21",
     "prisma": "^4.3.1",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.4.0"
