@@ -32,6 +32,9 @@ async function bootstrap() {
       if (auth !== process.env.BAG_SECRET) throw new HttpQueryError(403, 'Forbidden');
       return { prisma };
     },
+    cors: {
+      origin: '*',
+    },
   });
 
   const { url } = await server.listen({ port: process.env.PORT || 4000 });
