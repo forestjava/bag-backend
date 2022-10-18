@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "BAG: Backend Application",
   "scripts": {
-    "install": "tsc",
+    "build": "tsc",
     "start": "node dist/main.js",
     "dev": "tsc && node dist/main.js",
     "prisma:generate": "prisma generate",
